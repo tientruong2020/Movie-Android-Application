@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="item"
+            type="com.group1.movieapplication.model.upcoming.UpComingItem" />
+        <variable
+            name="onClickListener"
+            type="com.group1.movieapplication.ui.home.adapter.UpcomingItemOnClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> onClickListener.onClick(item)}"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:id="@+id/img_poster"
+            android:layout_width="wrap_content"
+            android:layout_height="220dp"
+            app:image="@{item.image}"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/txt_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{item.fullTitle}"
+            android:textColor="@color/textColor"
+            app:layout_constraintTop_toBottomOf="@id/img_poster"
+            app:layout_constraintStart_toStartOf="@id/img_poster"/>
+
+        <TextView
+            android:id="@+id/txt_genre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{item.genres}"
+            app:layout_constraintTop_toBottomOf="@id/txt_name"
+            app:layout_constraintStart_toStartOf="@id/txt_name"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="result"
+            type="com.group1.movieapplication.model.search.Result" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/movie_item_view">
+
+        <View
+            android:id="@+id/viewSuppoter"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_10sdp"
+            app:layout_constraintTop_toBottomOf="@id/imageTVshow" />
+
+        <View
+            android:id="@+id/viewbackground"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/background_tv_show"
+            android:paddingTop="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@id/textname" />
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/imageTVshow"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:imageURL="@{result.image}"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:riv_corner_radius="@dimen/_4sdp" />
+
+        <TextView
+            android:id="@+id/textname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:includeFontPadding="false"
+            android:paddingTop="@dimen/_8sdp"
+            android:text="@{result.title}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageTVshow"
+            app:layout_constraintTop_toTopOf="@id/imageTVshow" />
+        <!--        nguyen anh ky xong roi hihi-->
+        <TextView
+            android:id="@+id/textnetword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:includeFontPadding="false"
+            android:text='@{result.resultType}'
+            android:textColor="@color/colorTextOther"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="@id/textname"
+            app:layout_constraintStart_toStartOf="@id/textname"
+            app:layout_constraintTop_toBottomOf="@id/textname" />
+        <TextView
+            android:id="@+id/textstarted"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:includeFontPadding="false"
+            android:text='@{result.description}'
+            android:textColor="@color/colorTextSecoundary"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="@id/textname"
+            app:layout_constraintStart_toStartOf="@id/textname"
+            app:layout_constraintTop_toBottomOf="@id/textnetword" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Movie Application</string>
+    <string name="nav_home_title">Home</string>
+    <string name="nav_search_title">Search</string>
+    <string name="nav_profile_title">Profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="popular_movie">Popular Movie</string>
+    <string name="popular_tv">Popular TV</string>
+    <string name="default_web_client_id" translatable="false">923593254432-l7gtnfdtpia8q907l4iffg321sa9ilr6.apps.googleusercontent.com</string>
+    <string name="lable_toedit_profile_et">Edit Profile</string>
+    <string name="lable_my_moview_tw"> My Movie</string>
+    <string name="lable_edit_avatar_btn">Change Avatar</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="comment">Comment</string>
+    <string name="cancel">Cancel</string>
+    <string name="nav_change_pw_title">Change Password</string>
+    <string name="nav_logout_title">Logout</string>
+    <string name="open_drawer_nav_title">Open</string>
+    <string name="close_drawer_nav_title">Close</string>
+    <string name="change_password_dialog_title">Change Password Dialog</string>
+    <string name="btn_change_password_title">Confirm</string>
+    <string name="btn_cancel_title">Cancel</string>
+    <string name="hint_current_pw">Your Current Password</string>
+    <string name="hint_new_pw">Your New Password</string>
+    <string name="hint_confirm_pw">Repeat New Password</string>
+    <string name="facebook_app_id">257029762909650</string>
+    <string name="fb_login_protocol_scheme">fb257029762909650</string>
+    <string name="title_activity_wellcome">My Movie</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="btn_save_label">Save</string>
+    <string name="btn_back_btn">back</string>
+    <string name="tw_banner">My Movie</string>
+    <string name="tw_slogan">Group 1 - HN21_CPL_Androi_01</string>
+    <string name="logo_content_description">Logo</string>
+
+</resources>

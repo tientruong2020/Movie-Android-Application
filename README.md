@@ -8,6 +8,7 @@ This Project includes Technologies:
   - Movie database use https://imdb-api.com/api
   - Retrofit
   - Navigation component
+
 The project include futures:
   - show top movie and tv program
   - signup and signin

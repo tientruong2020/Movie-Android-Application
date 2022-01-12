@@ -18,9 +18,10 @@
         android:usesCleartextTraffic="true">
 
         <activity
+            android:exported="true"
             android:name=".ui.splashScreen.WellcomeActivity"
             android:label="@string/title_activity_wellcome"
-            android:theme="@style/Theme.MovieApplication.NoActionBar" android:exported="true">
+            android:theme="@style/Theme.MovieApplication.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -52,7 +53,7 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.view.RegisterActivity" android:exported="true"/>
+        <activity android:name=".ui.view.RegisterActivity" android:exported="true" />
         <activity android:name=".ui.MainActivity" android:exported="true"/>
         <activity android:name=".ui.view.LoginActivity" android:exported="true"/>
     </application>

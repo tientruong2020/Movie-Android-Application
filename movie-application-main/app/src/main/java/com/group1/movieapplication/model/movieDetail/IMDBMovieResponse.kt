@@ -10,7 +10,7 @@ data class IMDBMovieResponse(
     @SerialName("id")
     var id: String,
     @SerialName("errorMessage")
-    val errorMessage: String,
+    val errorMessage: String?,
     @SerialName("title")
     var title: String,
     @SerialName("type")

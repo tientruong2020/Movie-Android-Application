@@ -57,7 +57,6 @@ class MovieDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        checkNull()
         Timber.d(Movie.movieId)
         getMovieDetail()
         getMovieTrailer()
@@ -172,13 +171,6 @@ class MovieDetailFragment : Fragment() {
         trailerPlayer?.webChromeClient = WebChromeClient()
     }
 
-    private fun checkNull() {
-        if (homeViewModel.selectedPopularItem == null)
-            Movie.movieId = homeViewModel.selectedUpComingItem!!.id
-        else
-            Movie.movieId = homeViewModel.selectedPopularItem!!.id
-
-    }
 
     private fun setAction() {
         val commentBtn = view?.findViewById<Button>(R.id.confBtn)

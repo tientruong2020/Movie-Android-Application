@@ -13,15 +13,14 @@ class RatedMovie : Serializable {
     var username: String? = null
     var userImage: String? = null
 
-    constructor()
-
     constructor(userId: String?, ratingScore: String?, comment: String?) {
         this.userId = userId
         this.ratingScore = ratingScore
         this.comment = comment
     }
 
-    constructor(username: String?, userImage: String?, ratingScore: String?, comment: String?) {
+    constructor(userId: String?,username: String?, userImage: String?, ratingScore: String?, comment: String?) {
+        this.userId = userId
         this.username = username
         this.userImage = userImage
         this.ratingScore = ratingScore

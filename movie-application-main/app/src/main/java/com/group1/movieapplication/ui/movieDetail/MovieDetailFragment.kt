@@ -23,6 +23,7 @@ import com.group1.movieapplication.model.movieDetail.RatedMovie
 import com.group1.movieapplication.model.movieDetail.Trailer
 import com.group1.movieapplication.ui.home.HomeViewModel
 import com.group1.movieapplication.ui.movieDetail.adapter.GenreAdapter
+import com.group1.movieapplication.ui.movieDetail.adapter.RateAdapter
 import com.group1.movieapplication.ui.profile.ProfileViewModel
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,7 +34,7 @@ import timber.log.Timber
 class MovieDetailFragment : Fragment() {
 
     private val movieViewModel by viewModels<MovieDetailViewModel>()
-    private val homeViewModel by activityViewModels<HomeViewModel>()
+    private lateinit var rateAdapter: RateAdapter
     private val userViewModel by activityViewModels<ProfileViewModel>()
 
     private var rcvGenreAdapter: GenreAdapter? = null
@@ -91,31 +92,15 @@ class MovieDetailFragment : Fragment() {
     }
 
     private fun getMovieRating() {
+        val recyclerView:RecyclerView = binding.userRatingRecyclerView
+        rateAdapter = RateAdapter()
+        recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        recyclerView.adapter = rateAdapter
         movieViewModel.getAllRating(Movie.movieId)
-        movieViewModel.rating.observe(viewLifecycleOwner) { userRatingData ->
-            if (userRatingData != null) {
+        movieViewModel.rating.observe(viewLifecycleOwner) { userRatingList ->
+            if (userRatingList != null) {
+                rateAdapter.setData(userRatingList)
 
-                var userRating = RatedMovie(
-                    userRatingData.userId,
-                    userRatingData.ratingScore,
-                    userRatingData.comment
-                )
-
-                Timber.d(userRatingData.userId)
-
-                movieViewModel.getInfo(userRating.userId!!)
-                movieViewModel.user.observe(viewLifecycleOwner) { userData ->
-                    if (userData != null) {
-
-                        userRating = RatedMovie(
-                            userData.firstname + " " + userData.lastname,
-                            userData.avatar_uri, userRatingData.ratingScore,
-                            userRatingData.comment
-                        )
-
-                        setRating(userRating)
-                    }
-                }
             }
         }
     }
@@ -132,32 +117,6 @@ class MovieDetailFragment : Fragment() {
 
     }
 
-    private fun setRating(element: RatedMovie) {
-
-        val ratingHolder = activity?.findViewById<LinearLayout>(R.id.userRatingHolder)
-
-        Timber.d("%s %s", element.username, element.userImage)
-
-        val view: View =
-            layoutInflater.inflate(R.layout.movie_detail_viewer_rating_item, ratingHolder, false)
-
-        val userImage = view.findViewById<ImageView>(R.id.userImageView)
-        val username = view.findViewById<TextView>(R.id.userNameTv)
-        val userRating = view.findViewById<RatingBar>(R.id.userRatedBar)
-        val userComment = view.findViewById<TextView>(R.id.userCmtTv)
-
-        if (element.userImage == null || element.userImage == "" || element.userImage == "notSet") {
-            userImage.setImageResource(R.drawable.default_image_foreground)
-        } else {
-            Picasso.get().load(element.userImage).into(userImage)
-        }
-
-        username?.text = element.username
-        userRating?.rating = element.ratingScore!!.toFloat()
-        userComment?.text = element.comment
-
-        ratingHolder?.addView(view)
-    }
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun setTrailer(trailer: Trailer) {
@@ -181,8 +140,7 @@ class MovieDetailFragment : Fragment() {
         }
 
         cancelBtn?.setOnClickListener {
-            userRatingBar.rating = 0F
-            userCmtEdt.setText("")
+            resetComment()
         }
     }
 
@@ -194,9 +152,16 @@ class MovieDetailFragment : Fragment() {
                 userRatingBar.rating.toString(),
                 userCmtEdt.text.toString()
             )
-            movieViewModel.saveRating(ratedMovie)
-            parentFragmentManager.beginTransaction().detach(this).commit()
-            parentFragmentManager.beginTransaction().attach(this).commit()
+            movieViewModel.saveRating(ratedMovie).observe(viewLifecycleOwner,{
+                if (it){
+                    resetComment()
+                }
+            })
         }
+    }
+
+    private fun resetComment(){
+        userRatingBar.rating = 0F
+        userCmtEdt.text.clear()
     }
 }

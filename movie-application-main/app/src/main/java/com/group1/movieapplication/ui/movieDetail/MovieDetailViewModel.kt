@@ -29,11 +29,13 @@ class MovieDetailViewModel @Inject constructor(
     private var _trailer = MutableLiveData<IMDBTrailerResponse?>(null)
     val trailer: LiveData<IMDBTrailerResponse?> get() = _trailer
 
-    private var _rating = MutableLiveData<RatedMovie>()
-    val rating: LiveData<RatedMovie?> get() = _rating
+    private var _rating = MutableLiveData<ArrayList<RatedMovie>>()
+    val rating: LiveData<ArrayList<RatedMovie>?> get() = _rating
 
     private var _user = MutableLiveData<User>()
     val user: LiveData<User?> get() = _user
+
+    var resultSavingRate = MutableLiveData<Boolean>()
 
 
     fun getMovie() {
@@ -49,10 +51,8 @@ class MovieDetailViewModel @Inject constructor(
         }
     }
 
-    fun saveRating(ratedMovie: RatedMovie) {
-        viewModelScope.launch {
-            firebaseRepo.saveRating(ratedMovie)
-        }
+    fun saveRating(ratedMovie: RatedMovie):MutableLiveData<Boolean>{
+        return firebaseRepo.saveRating(ratedMovie)
     }
 
     fun getAllRating(movieId: String) {

@@ -182,19 +182,16 @@
                     app:layout_constraintStart_toEndOf="@+id/confBtn"
                     app:layout_constraintTop_toBottomOf="@+id/userCmtEdt" />
 
-                <LinearLayout
-                    android:id="@+id/userRatingHolder"
-                    android:layout_width="376dp"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/userRatingRecyclerView"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
                     android:layout_marginTop="44dp"
-                    android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.157"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/confBtn">
+                    app:layout_constraintTop_toBottomOf="@+id/confBtn"/>
 
-                </LinearLayout>
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>

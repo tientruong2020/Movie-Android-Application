@@ -5,7 +5,7 @@ import com.group1.movieapplication.model.user.User
 import com.group1.movieapplication.model.movieDetail.RatedMovie
 
 interface FirebaseRepository {
-    suspend fun saveRating(ratedMovie: RatedMovie)
-    suspend fun getAllRating(movieId: String): MutableLiveData<RatedMovie>
+    fun saveRating(ratedMovie: RatedMovie):MutableLiveData<Boolean>
+    suspend fun getAllRating(movieId: String): MutableLiveData<ArrayList<RatedMovie>>
     suspend fun getInfo(userId: String): MutableLiveData<User>
 }
